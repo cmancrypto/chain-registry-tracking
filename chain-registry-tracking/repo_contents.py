@@ -66,7 +66,7 @@ class RepoContents(RegistryTrackingBase):
 
 
 content_filters=ContentFilter(name="testnets",
-                              path="testnet",
+                              path="testnets",
                               return_file_content_type="dir",
                               recursively_access=False)
 
