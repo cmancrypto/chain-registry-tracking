@@ -14,9 +14,15 @@ def get_github_instance() -> Github:
     load_dotenv()
     ##this is a GitHub API Fine Grained Access Token
     GITHUB_PERSONAL_ACCESS_TOKEN = os.environ.get("GITHUB_PERSONAL_ACCESS_TOKEN")
-    auth = Auth.Token(GITHUB_PERSONAL_ACCESS_TOKEN)
-    gh = Github(auth=auth)
-    logger.info(f"successfully authenticated as {gh.get_user().login}")
+    if GITHUB_PERSONAL_ACCESS_TOKEN:
+        auth = Auth.Token(GITHUB_PERSONAL_ACCESS_TOKEN)
+        gh = Github(auth=auth)
+        logger.info(f"successfully authenticated as {gh.get_user().login}")
+    else:
+        gh = Github()
+        logger.info(f"no Github personal access token - public repos only")
+
+
     return gh
 
 
@@ -47,7 +53,7 @@ class RegistryTrackingBase:
     def fetch_df_from_csv(self,**kwargs) -> pd.DataFrame:
         # Get the path of the parent directory
 
-        csv_file_path = self.get_csv_filepath()
+        csv_file_path = self.get_csv_filepath(**kwargs)
         if os.path.exists(csv_file_path) and os.path.isfile(csv_file_path):
             try:
                 df = pd.read_csv(csv_file_path)

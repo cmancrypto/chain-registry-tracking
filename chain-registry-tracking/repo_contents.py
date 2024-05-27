@@ -11,7 +11,7 @@ import pandas as pd
 class ContentFilter:
     def __init__(self, name:str, path: str, return_file_content_type : str, recursively_access : bool = False ):
         """
-        Content Filter designed to be used with class RepoContents
+        Content Filter designed to be used with class RepoContents to define parameters needed for the functions in RepoContents
         :param name: name of filter - will be used as {version} for CSV file to not overwrite others of same user/repo/class_type
         :type name: str
         :param path: path of directory in repo to search - "" will search all
@@ -58,10 +58,15 @@ class RepoContents(RegistryTrackingBase):
         return converted_contents
 
     def main(self):
+        existing_df=self.fetch_df_from_csv(version=self.content_filters.name)
         contents=self.get_path_contents()
         contents_names=self.convert_contents_to_names(contents)
-        df=pd.DataFrame(contents_names)
+        df=pd.DataFrame({"contents_names" : contents_names})
         self.write_df_to_csv(df,version=self.content_filters.name)
+        ## ~ negates the isin operator to get new df contents NOT IN existing df
+        new_contents_df=df[~df.iloc[:,0].isin(existing_df.iloc[:,0])]
+        return [new_contents_df]
+
 
 
 
