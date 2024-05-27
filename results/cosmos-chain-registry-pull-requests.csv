@@ -3592,7 +3592,7 @@ number,label,title,created,html_url,state,merged_at
 3847.0,[],Fix dYdX Testnet assets,2024-02-11 12:45:28+00:00,https://github.com/cosmos/chain-registry/pull/3847,closed,2024-02-11 21:08:33+00:00
 3848.0,[],Added $BADKID (osmosis),2024-02-11 14:23:52+00:00,https://github.com/cosmos/chain-registry/pull/3848,closed,2024-02-11 21:10:25+00:00
 3849.0,[],Update AutoStake moniker Dymension,2024-02-11 15:36:02+00:00,https://github.com/cosmos/chain-registry/pull/3849,closed,2024-02-11 21:10:45+00:00
-3850.0,[],Include a top-level chainlists,2024-02-11 18:26:08+00:00,https://github.com/cosmos/chain-registry/pull/3850,,
+3850.0,[],Include a top-level chainlists,2024-02-11 18:26:08+00:00,https://github.com/cosmos/chain-registry/pull/3850,closed,
 3852.0,[],Add Stakewolle rpc/api for multiple chains,2024-02-12 06:21:37+00:00,https://github.com/cosmos/chain-registry/pull/3852,closed,2024-02-12 17:41:08+00:00
 3853.0,[],Update AutoStake DYDX moniker,2024-02-12 06:51:05+00:00,https://github.com/cosmos/chain-registry/pull/3853,closed,2024-02-12 17:41:25+00:00
 3854.0,[],Update AutoStake moniker and add missing endpoints,2024-02-12 06:52:34+00:00,https://github.com/cosmos/chain-registry/pull/3854,closed,2024-02-12 17:41:47+00:00
@@ -3930,7 +3930,7 @@ number,label,title,created,html_url,state,merged_at
 4217.0,['endpoints'],Update StakeUp endpoints for Source,2024-03-26 09:46:33+00:00,https://github.com/cosmos/chain-registry/pull/4217,closed,2024-03-26 09:49:36+00:00
 4218.0,['chain-upgrade'],Upgrade Migaloo to v4.1.4,2024-03-26 09:46:58+00:00,https://github.com/cosmos/chain-registry/pull/4218,closed,
 4219.0,[],update dYdX RPC list order,2024-03-26 13:36:01+00:00,https://github.com/cosmos/chain-registry/pull/4219,closed,2024-03-26 17:36:58+00:00
-4220.0,[],docs: remove blockspace race testnet Celestia,2024-03-26 13:45:24+00:00,https://github.com/cosmos/chain-registry/pull/4220,,
+4220.0,[],docs: remove blockspace race testnet Celestia,2024-03-26 13:45:24+00:00,https://github.com/cosmos/chain-registry/pull/4220,closed,
 4221.0,['chain-upgrade'],Upgrade Composable to v6_5_0,2024-03-26 21:19:35+00:00,https://github.com/cosmos/chain-registry/pull/4221,closed,2024-03-27 19:55:59+00:00
 4222.0,[],add huahua and stkhuahua to persistence,2024-03-27 01:44:20+00:00,https://github.com/cosmos/chain-registry/pull/4222,closed,2024-03-27 17:17:35+00:00
 4223.0,[],Update uqsr fees params in Quasar,2024-03-27 09:33:58+00:00,https://github.com/cosmos/chain-registry/pull/4223,closed,2024-03-27 17:18:03+00:00
@@ -3940,11 +3940,11 @@ number,label,title,created,html_url,state,merged_at
 4227.0,['chain-upgrade'],Upgrade Celestia to v1.7.0,2024-03-27 18:13:41+00:00,https://github.com/cosmos/chain-registry/pull/4227,closed,2024-03-27 18:20:15+00:00
 4228.0,[],Add BRNZ to osmosis assetlist,2024-03-27 18:51:39+00:00,https://github.com/cosmos/chain-registry/pull/4228,closed,2024-03-28 20:01:11+00:00
 4229.0,['chain-upgrade'],Upgrade Nibiru to v1.1.0,2024-03-27 19:55:49+00:00,https://github.com/cosmos/chain-registry/pull/4229,closed,2024-04-01 17:02:35+00:00
-4230.0,[],takumi.png,2024-03-28 00:05:38+00:00,https://github.com/cosmos/chain-registry/pull/4230,,
-4231.0,[],Add TAKUMI to Neutron asset list.json,2024-03-28 00:21:28+00:00,https://github.com/cosmos/chain-registry/pull/4231,,
+4230.0,[],takumi.png,2024-03-28 00:05:38+00:00,https://github.com/cosmos/chain-registry/pull/4230,closed,
+4231.0,[],Add TAKUMI to Neutron asset list.json,2024-03-28 00:21:28+00:00,https://github.com/cosmos/chain-registry/pull/4231,closed,2024-05-27 18:45:11+00:00
 4232.0,[],Fix lava testnet updated,2024-03-28 12:54:03+00:00,https://github.com/cosmos/chain-registry/pull/4232,closed,2024-03-28 22:44:07+00:00
 4233.0,[],Add website to Scorum,2024-03-28 18:54:17+00:00,https://github.com/cosmos/chain-registry/pull/4233,closed,2024-03-29 01:40:17+00:00
-4234.0,[],Add Coingecko ID to XRP on Coreum Chain,2024-03-28 19:49:28+00:00,https://github.com/cosmos/chain-registry/pull/4234,,
+4234.0,[],Add Coingecko ID to XRP on Coreum Chain,2024-03-28 19:49:28+00:00,https://github.com/cosmos/chain-registry/pull/4234,closed,
 4235.0,['chain-upgrade'],Upgrade Stride to v21,2024-03-28 21:01:28+00:00,https://github.com/cosmos/chain-registry/pull/4235,closed,2024-04-01 17:02:16+00:00
 4236.0,[],Update onomy seeds,2024-03-28 21:51:18+00:00,https://github.com/cosmos/chain-registry/pull/4236,closed,
 4237.0,"['chain-upgrade', 'endpoints']",update onomy seeds,2024-03-28 21:56:25+00:00,https://github.com/cosmos/chain-registry/pull/4237,closed,2024-04-03 22:25:45+00:00
@@ -4012,8 +4012,8 @@ number,label,title,created,html_url,state,merged_at
 4304.0,['new-chain'],add loop chain,2024-04-05 21:23:38+00:00,https://github.com/cosmos/chain-registry/pull/4304,closed,2024-04-10 18:34:43+00:00
 4307.0,[],Update Agoric Chain Configuration: Remove BigDipper Explorer and Add .gitignore Rule for node_modules/,2024-04-06 21:03:53+00:00,https://github.com/cosmos/chain-registry/pull/4307,closed,
 4308.0,[],Update Chain Configuration: Remove BigDipper Explorer Across Projects,2024-04-06 21:32:52+00:00,https://github.com/cosmos/chain-registry/pull/4308,closed,2024-04-10 00:54:26+00:00
-4309.0,[],Add $YAWP to Osmosis assetlist,2024-04-07 00:34:58+00:00,https://github.com/cosmos/chain-registry/pull/4309,,
-4310.0,[],Add $YAWP to Neutron,2024-04-07 00:41:53+00:00,https://github.com/cosmos/chain-registry/pull/4310,,
+4309.0,[],Add $YAWP to Osmosis assetlist,2024-04-07 00:34:58+00:00,https://github.com/cosmos/chain-registry/pull/4309,closed,
+4310.0,[],Add $YAWP to Neutron,2024-04-07 00:41:53+00:00,https://github.com/cosmos/chain-registry/pull/4310,closed,
 4322.0,[],Add Nodes Hub Endpoints To various chains,2024-04-07 12:29:34+00:00,https://github.com/cosmos/chain-registry/pull/4322,closed,
 4323.0,[],Add Nodes Hub Endpoints To various chains,2024-04-07 12:33:54+00:00,https://github.com/cosmos/chain-registry/pull/4323,closed,
 4324.0,[],Add Nodes Hub Endpoints To various chains,2024-04-07 12:42:25+00:00,https://github.com/cosmos/chain-registry/pull/4324,closed,
@@ -4048,7 +4048,7 @@ number,label,title,created,html_url,state,merged_at
 4354.0,[],fix(saga): change coingecko id,2024-04-09 13:38:37+00:00,https://github.com/cosmos/chain-registry/pull/4354,closed,2024-04-09 15:05:23+00:00
 4355.0,[],"🚀 WHEN MOON 🌕 WHEN LAMBO 🔥 Add RPC, API and Explorer endpoints to Provenance",2024-04-09 14:44:03+00:00,https://github.com/cosmos/chain-registry/pull/4355,closed,2024-04-09 15:06:54+00:00
 4356.0,[],chore: add ezstaking saga explorer,2024-04-09 15:08:20+00:00,https://github.com/cosmos/chain-registry/pull/4356,closed,2024-04-09 15:11:44+00:00
-4357.0,[],Update assetlist.json,2024-04-09 15:18:42+00:00,https://github.com/cosmos/chain-registry/pull/4357,,
+4357.0,[],Update assetlist.json,2024-04-09 15:18:42+00:00,https://github.com/cosmos/chain-registry/pull/4357,closed,
 4358.0,[],Update Expired IBC Client Planq<>Source,2024-04-09 15:24:27+00:00,https://github.com/cosmos/chain-registry/pull/4358,closed,2024-04-10 18:15:41+00:00
 4359.0,[],Add ATOM1KLFG to chain registry,2024-04-09 16:07:30+00:00,https://github.com/cosmos/chain-registry/pull/4359,closed,2024-04-09 17:09:02+00:00
 4360.0,[],Update $SAGA token Socials,2024-04-09 18:48:24+00:00,https://github.com/cosmos/chain-registry/pull/4360,closed,2024-04-09 18:55:08+00:00
@@ -4098,7 +4098,7 @@ number,label,title,created,html_url,state,merged_at
 4405.0,[],Improve asset information for PUNDIX,2024-04-15 13:53:37+00:00,https://github.com/cosmos/chain-registry/pull/4405,closed,2024-04-15 16:06:04+00:00
 4406.0,[],add osmosis-stargaze ics721 channels,2024-04-15 15:31:19+00:00,https://github.com/cosmos/chain-registry/pull/4406,closed,2024-04-15 18:10:32+00:00
 4407.0,[],Update Osmosis' Assetlist,2024-04-15 18:34:30+00:00,https://github.com/cosmos/chain-registry/pull/4407,closed,2024-04-15 19:50:40+00:00
-4408.0,[],Update assetlist.json,2024-04-15 20:45:52+00:00,https://github.com/cosmos/chain-registry/pull/4408,,
+4408.0,[],Update assetlist.json,2024-04-15 20:45:52+00:00,https://github.com/cosmos/chain-registry/pull/4408,closed,
 4409.0,[],Add Staking Denom Validation,2024-04-15 22:19:56+00:00,https://github.com/cosmos/chain-registry/pull/4409,closed,2024-04-15 22:21:10+00:00
 4410.0,[],Remove Duplicate Image for Levana,2024-04-15 22:23:03+00:00,https://github.com/cosmos/chain-registry/pull/4410,closed,2024-04-15 22:24:17+00:00
 4411.0,[],Add Description for $PEPE,2024-04-15 22:25:13+00:00,https://github.com/cosmos/chain-registry/pull/4411,closed,2024-04-15 22:26:27+00:00
@@ -4397,5 +4397,9 @@ number,label,title,created,html_url,state,merged_at
 4711.0,[],Add LP tokens to assetlist on Terra,2024-05-24 15:05:49+00:00,https://github.com/cosmos/chain-registry/pull/4711,closed,2024-05-24 17:15:31+00:00
 4712.0,[], mantrachain,2024-05-24 20:05:45+00:00,https://github.com/cosmos/chain-registry/pull/4712,open,
 4713.0,[],Add Ninja Blaze Token,2024-05-24 20:28:46+00:00,https://github.com/cosmos/chain-registry/pull/4713,open,
-4714.0,[],chore: update niburu images to latest,2024-05-26 17:25:22+00:00,https://github.com/cosmos/chain-registry/pull/4714,open,
-4715.0,[],Add socials and extended_description fields to PHMN asset,2024-05-26 18:05:28+00:00,https://github.com/cosmos/chain-registry/pull/4715,open,
+4714.0,[],chore: update niburu images to latest,2024-05-26 17:25:22+00:00,https://github.com/cosmos/chain-registry/pull/4714,closed,2024-05-27 18:06:15+00:00
+4715.0,[],Add socials and extended_description fields to PHMN asset,2024-05-26 18:05:28+00:00,https://github.com/cosmos/chain-registry/pull/4715,closed,2024-05-27 18:06:53+00:00
+4716.0,[],Add ECOStake Injective APIs,2024-05-27 17:42:43+00:00,https://github.com/cosmos/chain-registry/pull/4716,closed,2024-05-27 18:33:26+00:00
+4717.0,[],Added ashHUAHUA,2024-05-27 17:56:04+00:00,https://github.com/cosmos/chain-registry/pull/4717,open,
+4718.0,[],Add CDT & MBRN ics20s to Stargaze,2024-05-27 18:28:31+00:00,https://github.com/cosmos/chain-registry/pull/4718,closed,
+4719.0,[], Add CDT & MBRN ics20s to Stargaze,2024-05-27 19:36:07+00:00,https://github.com/cosmos/chain-registry/pull/4719,open,

@@ -2,8 +2,8 @@ import smtplib, ssl
 from email.message import EmailMessage
 from dotenv import load_dotenv
 import os
-from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from loguru import logger
 
 class EmailConfig():
     def __init__(self):
@@ -15,26 +15,25 @@ class EmailConfig():
         self.sender=os.environ.get("EMAIL_SENDER")
 
 
-def send_email(email_config: EmailConfig, receiver, msg):
+def send_email(email_config: EmailConfig, recipients : list, msg):
 
     with smtplib.SMTP(email_config.smtp_server_name, email_config.port) as server:
         server.starttls()
         server.login(email_config.username, email_config.password)
-        server.sendmail(email_config.sender,receiver,msg)
-        print("message sent")
-        #server.send_message(message)
+        server.sendmail(email_config.sender,recipients,msg)
+        logger.info("message sent to")
         server.quit()
 
-receiver="cmancrypto@outlook.com"
-sender="MS_uVEmsW@trial-o65qngkk7qwgwr12.mlsender.net"
-message=f"""\
-Subject: Chain_Registry_Tracking
-To: {receiver}
-From: {sender}
 
-Test
-"""
-email_config=EmailConfig()
-print(type(email_config.sender))
-send_email(email_config=email_config,receiver=receiver,msg=message)
-#todo change to MIME email and then create function to shape message class
+def format_email(subject, body, sender, recipients)-> str:
+    msg=MIMEText(body)
+    msg["Subject"]=subject
+    msg["From"] = sender
+    msg["To"] = ",".join(recipients)
+    return msg.as_string()
+
+def main( subject : str, msg_body : str, recipients : list):
+    email_config=EmailConfig()
+    sender = email_config.sender
+    msg=format_email(subject,msg_body,sender,recipients)
+    send_email(email_config,recipients,msg)

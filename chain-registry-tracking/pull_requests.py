@@ -106,12 +106,8 @@ class RepoPulls(RegistryTrackingBase):
                 logger.error(f"error getting {self.user_repo} pull {number} : {type(e).__name__} with {e} ")
         self.write_df_to_csv(df)
         logger.info(f"{len(updated_pulls)} updated pull requests")
+        updated_pulls=pd.DataFrame(updated_pulls)
         return updated_pulls
 
 
-
-cosmos_repo_pulls = RepoPulls("cosmos", "chain-registry")
-dymension_repo_pulls= RepoPulls(github_user="dymensionxyz",github_repo_name="chain-registry")
-cosmos_repo_pulls.main()
-dymension_repo_pulls.main()
 
