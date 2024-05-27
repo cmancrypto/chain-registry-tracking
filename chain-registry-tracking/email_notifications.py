@@ -2,27 +2,39 @@ import smtplib, ssl
 from email.message import EmailMessage
 from dotenv import load_dotenv
 import os
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
-def send_email(to_email, subject, msg):
+class EmailConfig():
+    def __init__(self):
+        load_dotenv()
+        self.password=os.environ.get("EMAIL_PASSWORD")
+        self.username = os.environ.get("EMAIL_USERNAME")
+        self.smtp_server_name=os.environ.get("SMTP_SERVER")
+        self.port=587
+        self.sender=os.environ.get("EMAIL_SENDER")
 
-    ##CONFIG CONSTANTS
-    load_dotenv()
-    email_password = os.environ.get("EMAIL_PASSWORD")
-    email_username=os.environ.get("EMAIL_USERNAME")
-    smtp_server_name=os.environ.get("SMTP_SERVER")#"smtp.gmail.com"
-    port = 465 #465 for SSL
 
+def send_email(email_config: EmailConfig, receiver, msg):
 
-    message= EmailMessage()
-    message['Subject'] = subject
-    message['From']= email_username
-    message['To']=to_email
-    message.set_content(msg)
-
-    context = ssl.create_default_context()
-
-    with smtplib.SMTP_SSL(smtp_server_name, port, context=context) as server:
-        server.login(email_username,email_password)
-        server.send_message(message)
+    with smtplib.SMTP(email_config.smtp_server_name, email_config.port) as server:
+        server.starttls()
+        server.login(email_config.username, email_config.password)
+        server.sendmail(email_config.sender,receiver,msg)
+        print("message sent")
+        #server.send_message(message)
         server.quit()
 
+receiver="cmancrypto@outlook.com"
+sender="MS_uVEmsW@trial-o65qngkk7qwgwr12.mlsender.net"
+message=f"""\
+Subject: Chain_Registry_Tracking
+To: {receiver}
+From: {sender}
+
+Test
+"""
+email_config=EmailConfig()
+print(type(email_config.sender))
+send_email(email_config=email_config,receiver=receiver,msg=message)
+#todo change to MIME email and then create function to shape message class
