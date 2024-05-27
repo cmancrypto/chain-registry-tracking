@@ -15,6 +15,13 @@ class RepoPulls(RegistryTrackingBase):
 
     def main(self) -> list[pandas.DataFrame]:
         # get the existing pulls from csv, if it exists, else get a blank df
+        [new_pulls, existing_pulls] = self.handle_new_pulls()
+        updated_pulls=self.update_pull_requests()
+        return [new_pulls,existing_pulls,updated_pulls]
+
+
+
+    def handle_new_pulls(self)->list[pandas.DataFrame]:
         existing_pulls = self.fetch_df_from_csv()
         new_pulls = self.get_new_pulls(chain_registry_repo=self.repo, existing_pulls=existing_pulls)
         combined = pd.concat([existing_pulls, new_pulls])
@@ -107,4 +114,4 @@ cosmos_repo_pulls = RepoPulls("cosmos", "chain-registry")
 dymension_repo_pulls= RepoPulls(github_user="dymensionxyz",github_repo_name="chain-registry")
 cosmos_repo_pulls.main()
 dymension_repo_pulls.main()
-cosmos_repo_pulls.update_pull_requests()
+

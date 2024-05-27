@@ -1,6 +1,7 @@
 from typing import Optional
 
 import github.GithubException
+import pandas
 from github import Github, Repository
 from loguru import logger
 from github_helper import get_github_instance, get_repo, RegistryTrackingBase
@@ -57,7 +58,7 @@ class RepoContents(RegistryTrackingBase):
             converted_contents.append(content.name)
         return converted_contents
 
-    def main(self):
+    def main(self)->pandas.DataFrame:
         existing_df=self.fetch_df_from_csv(version=self.content_filters.name)
         contents=self.get_path_contents()
         contents_names=self.convert_contents_to_names(contents)
@@ -65,7 +66,7 @@ class RepoContents(RegistryTrackingBase):
         self.write_df_to_csv(df,version=self.content_filters.name)
         ## ~ negates the isin operator to get new df contents NOT IN existing df
         new_contents_df=df[~df.iloc[:,0].isin(existing_df.iloc[:,0])]
-        return [new_contents_df]
+        return new_contents_df
 
 
 
