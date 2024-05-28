@@ -21,7 +21,7 @@ def send_email(email_config: EmailConfig, recipients : list, msg):
         server.starttls()
         server.login(email_config.username, email_config.password)
         server.sendmail(email_config.sender,recipients,msg)
-        logger.info("message sent to")
+        logger.info(f"message sent to {recipients}")
         server.quit()
 
 

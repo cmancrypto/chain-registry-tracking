@@ -37,27 +37,36 @@ class RepoContentUpdateNotification:
         new_contents = repo_contents_instance.main()
         count_new = new_contents[new_contents.columns[0]].count()
         logger.info(
-            f"Got {count_new} new {self.content_filter.return_file_content_type} in {self.gh_repo_owner}/{self.gh_repo_name} ")
+            f"Got {count_new} new {self.content_filter.return_file_content_type}"
+            f"in {self.gh_repo_owner}/{self.gh_repo_name} ")
 
         if count_new > 0:
             #start to build the email
-            message_text = f"""
-            Got {count_new} new {self.content_filter.return_file_content_type} 
-            in {self.gh_repo_owner}/{self.gh_repo_name}
-            at path{self.content_filter.path} : \n
-            {new_contents.to_string()}
-            """
+            #text is split over multiple lines because displayed badly, didn't use multiline comment since it made the email multiline
+            message_text = (f"Got {count_new} new {self.content_filter.return_file_content_type}"
+                            f" in {self.gh_repo_owner}/{self.gh_repo_name} at path {self.content_filter.path} "
+                            f":\n{new_contents.to_string(index=False,header=False)}")
             message_subject = f"Got {count_new} new {self.content_filter.return_file_content_type} in {self.gh_repo_owner}/{self.gh_repo_name}"
             email_notifications.main(message_subject, message_text, self.notification_receivers)
 
 
 if __name__ == "__main__":
-    content_filters = repo_contents.ContentFilter(name="testnets",
+    chain_registry_content_filters = repo_contents.ContentFilter(name="testnets",
                                                   path="testnets",
                                                   return_file_content_type="dir",
                                                   recursively_access=False)
     chain_reg_testnet = RepoContentUpdateNotification("cosmos",
                                                       "chain-registry",
-                                                      ["cmancrpyto@outlook.com"],
-                                                      content_filter=content_filters)
+                                                      ["cmancrypto@outlook.com"],
+                                                      content_filter=chain_registry_content_filters)
     chain_reg_testnet.main()
+
+    dym_content_filters = repo_contents.ContentFilter(name="testnets_recursive",
+                                                  path="testnet",
+                                                  return_file_content_type="dir",
+                                                  recursively_access=True)
+    dym_reg_testnet = RepoContentUpdateNotification("dymensionxyz",
+                                                      "chain-registry",
+                                                      ["cmancrypto@outlook.com"],
+                                                      content_filter=dym_content_filters)
+    dym_reg_testnet.main()

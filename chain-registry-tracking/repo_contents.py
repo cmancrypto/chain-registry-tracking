@@ -34,6 +34,7 @@ class RepoContents(RegistryTrackingBase):
 
 
     def get_path_contents(self) -> list:
+        #todo fix recursive so that path returns the full path with dirs and so that you can search for blobs in recursive dirs
         if self.content_filter.path == None: path= ""
         try:
             contents = self.repo.get_contents(self.content_filter.path)
@@ -64,8 +65,13 @@ class RepoContents(RegistryTrackingBase):
         contents_names=self.convert_contents_to_names(contents)
         df=pd.DataFrame({"contents_names" : contents_names})
         self.write_df_to_csv(df, version=self.content_filter.name)
-        ## ~ negates the isin operator to get new df contents NOT IN existing df
-        new_contents_df=df[~df.iloc[:,0].isin(existing_df.iloc[:,0])]
+        if existing_df.empty:
+            #if existing was empty - all the new ones are new
+            new_contents_df = df
+        else:
+            #else get only the new ones not in the existing
+            ## ~ negates the isin operator to get new df contents NOT IN existing df
+            new_contents_df = df[~df.iloc[:, 0].isin(existing_df.iloc[:, 0])]
         return new_contents_df
 
 
