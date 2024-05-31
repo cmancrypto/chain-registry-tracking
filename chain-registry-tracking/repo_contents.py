@@ -1,8 +1,7 @@
-from typing import Optional, LiteralString
-
+from typing import Optional
 import github.GithubException
 import pandas
-from github import Github, Repository
+from github import Github, Repository, ContentFile
 from loguru import logger
 from github_helper import get_github_instance, get_repo, RegistryTrackingBase
 import os.path
@@ -36,7 +35,7 @@ class RepoContents(RegistryTrackingBase):
         self.content_filter=content_filter
 
 
-    def get_path_contents(self) -> list[Repository.ContentFile]:
+    def get_path_contents(self) -> list[ContentFile]:
         """
         Uses the attributes of ContentFilter to search the path defined by  github_user/github_repo_name
 
@@ -45,7 +44,7 @@ class RepoContents(RegistryTrackingBase):
         Will return either "files" or "dirs" depending on ContentFilter.return_file_content_type
 
         :return: repository OR dir contents that meet return_file_content_type depending on recursive search or not
-        :rtype: list[Repository.ContentFile]
+        :rtype: list[ContentFile]
         """
         if self.content_filter.path == None: path= ""
         try:
@@ -65,11 +64,11 @@ class RepoContents(RegistryTrackingBase):
                 logger.info(f"adding dir {file_content.path} to search")
         return return_contents
 
-    def convert_contents_to_names(self, contents : list[Repository.ContentFile]):
+    def convert_contents_to_names(self, contents : list[ContentFile]):
         #todo extend this to return other parameters? i.e take in "path" or "name" or many in a list - only useful if extending functionality later to return more than name for csv
         """
         Takes out only the path attribute of each item of the repository content list and returns in a list
-        :param contents: list[Github.Repository] content files for which to return path
+        :param contents: list[ContentFile] content files for which to return path
         :type contents: list[Repository.ContentFile]
         :return: list of converted_contents paths
         :rtype: list[str]
