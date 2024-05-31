@@ -61,12 +61,25 @@ if __name__ == "__main__":
                                                       content_filter=chain_registry_content_filters)
     chain_reg_testnet.main()
 
+    chain_registry_content_filters = repo_contents.ContentFilter(name="mainnets",
+                                                  path="",
+                                                  return_file_content_type="dir",
+                                                  recursively_access=False)
+    chain_reg_mainnet = RepoContentUpdateNotification("cosmos",
+                                                      "chain-registry",
+                                                      ["cmancrypto@outlook.com"],
+                                                      content_filter=chain_registry_content_filters)
+    chain_reg_mainnet.main()
+
+    """
+    #Example of a recursive search below 
     dym_content_filters = repo_contents.ContentFilter(name="testnets_recursive",
                                                   path="testnet",
-                                                  return_file_content_type="dir",
+                                                  return_file_content_type="file",
                                                   recursively_access=True)
     dym_reg_testnet = RepoContentUpdateNotification("dymensionxyz",
                                                       "chain-registry",
                                                       ["cmancrypto@outlook.com"],
                                                       content_filter=dym_content_filters)
     dym_reg_testnet.main()
+    """

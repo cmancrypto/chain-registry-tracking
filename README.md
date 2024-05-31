@@ -14,13 +14,13 @@ Tools as below:
 
 repo_contents - tools to scrape directories/files in a repo and save to a CSV 
 
-pull_requests - tools to scrape pull requests and saves to a CSV
+pull_requests - works, but not finished properly -  tools to scrape pull requests and saves to a CSV
 
 # main.py 
 Used to notify of new dirs/files added to GitHub to track changes in Chain Registry. 
 Running will save csv's into results folder
 
-Notification set to send difference between results folder and most recent run as updates 
+Notification set to send difference between results folder and most recent run as an email 
 
 Below example from main.py(): 
 
@@ -38,3 +38,4 @@ Will store the dirs names in a CSV and notify by email of changes in sub-directo
     chain_reg_testnet.main()
 ~~~
 
+#todo - update to take in email list rather than hard coded email 

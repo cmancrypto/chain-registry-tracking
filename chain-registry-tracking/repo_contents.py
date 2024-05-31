@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Optional, LiteralString
 
 import github.GithubException
 import pandas
@@ -28,13 +28,25 @@ class ContentFilter:
         self.recursively_access=recursively_access
 
 class RepoContents(RegistryTrackingBase):
+    """
+    class inheriting from RegistryTrackingBase to allow for the searching and returning of repo contents
+    """
     def __init__(self, github_user, github_repo_name, content_filter : ContentFilter):
         super().__init__(github_user=github_user, github_repo_name=github_repo_name, class_type="repo-contents")
         self.content_filter=content_filter
 
 
-    def get_path_contents(self) -> list:
-        #todo fix recursive so that path returns the full path with dirs and so that you can search for blobs in recursive dirs
+    def get_path_contents(self) -> list[Repository.ContentFile]:
+        """
+        Uses the attributes of ContentFilter to search the path defined by  github_user/github_repo_name
+
+        Can search recursively through dirs or not depending on ContentFilter.recursively_access
+
+        Will return either "files" or "dirs" depending on ContentFilter.return_file_content_type
+
+        :return: repository OR dir contents that meet return_file_content_type depending on recursive search or not
+        :rtype: list[Repository.ContentFile]
+        """
         if self.content_filter.path == None: path= ""
         try:
             contents = self.repo.get_contents(self.content_filter.path)
@@ -42,6 +54,7 @@ class RepoContents(RegistryTrackingBase):
             logger.error(f"No content found at path for {self.github_repo_name}:{e}")
             raise
         return_contents=[]
+        nested_contents=[]
         while contents:
             file_content=contents.pop(0)
             if file_content.type == self.content_filter.return_file_content_type:
@@ -52,14 +65,34 @@ class RepoContents(RegistryTrackingBase):
                 logger.info(f"adding dir {file_content.path} to search")
         return return_contents
 
-
-    def convert_contents_to_names(self, contents : list):
+    def convert_contents_to_names(self, contents : list[Repository.ContentFile]):
+        #todo extend this to return other parameters? i.e take in "path" or "name" or many in a list - only useful if extending functionality later to return more than name for csv
+        """
+        Takes out only the path attribute of each item of the repository content list and returns in a list
+        :param contents: list[Github.Repository] content files for which to return path
+        :type contents: list[Repository.ContentFile]
+        :return: list of converted_contents paths
+        :rtype: list[str]
+        """
         converted_contents=[]
         for content in contents:
-            converted_contents.append(content.name)
+            converted_contents.append(f"{content.path}")
         return converted_contents
 
     def main(self)->pandas.DataFrame:
+        """
+        fetch existing dataframe from the csv in the results folder if it exists
+
+        get the contents of the specified github repo
+
+        compare existing contents to the new contents
+
+        overwrite the existing csv file
+
+        return a dataframe of contents that are in the new contents, but not in the old dataframe
+        :return: dataframe of contents that have been added since the last csv was made
+        :rtype: pandas.DataFrame
+        """
         existing_df=self.fetch_df_from_csv(version=self.content_filter.name)
         contents=self.get_path_contents()
         contents_names=self.convert_contents_to_names(contents)

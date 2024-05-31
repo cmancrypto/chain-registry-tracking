@@ -1,3 +1,5 @@
+import typing
+
 from github import Github
 from github.Repository import Repository
 from github import Auth
@@ -31,7 +33,20 @@ def get_repo(gh_instance: Github, gh_user: str, gh_repo_name: str) -> Repository
     return chain_reg_repo
 
 class RegistryTrackingBase:
+    """
+    Base class for others to inherit
+    Instantiates the Github repo objects and  handles CSV reading/writing
+    """
     def __init__(self, github_user, github_repo_name,class_type):
+        """
+        Initialises the class with Github and repo instance and details for CSV writing
+        :param github_user: Github username of the repo to search
+        :type github_user: str
+        :param github_repo_name: Github repo name
+        :type github_repo_name: str
+        :param class_type: Inherited class type - used for writing the CSV so as to not overwrite CSV of other inherited class in results
+        :type class_type: str
+        """
         self.github_user = github_user
         self.github_repo_name = github_repo_name
         self.user_repo=f"{self.github_user}-{self.github_repo_name}"
@@ -41,7 +56,16 @@ class RegistryTrackingBase:
                              gh_repo_name=self.github_repo_name)
         self.class_type=class_type
 
-    def get_csv_filepath(self,version: Optional[str] = None):
+    def get_csv_filepath(self,version: Optional[str] = None)-> str:
+
+        """
+        returns CSV filepath based on the class attributes and kwargs (version) passed through
+        :param version: This is an optional str to add on to the end of the filename so that multiple versions of the same search can be written as CSV's
+        for example: one recursive, one not. One on foo dir and one on bar dir. Only used for filename.
+        :type version: str
+        :return: path of the CSV to read/write
+        :rtype: str
+        """
         parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         if version:
             filename = f"results/{self.github_user}-{self.github_repo_name}-{self.class_type}-{version}.csv"
@@ -51,6 +75,13 @@ class RegistryTrackingBase:
         return csv_file_path
 
     def fetch_df_from_csv(self,**kwargs) -> pd.DataFrame:
+        """
+        uses the get csv_file_path function to then return the csv file as a DataFrame
+        :param kwargs: kwargs to pass through to csv_file_path function
+        :type kwargs: any
+        :return: data frame of the results in the CSV - blank DataFrame if CSV file doesn't exist yet
+        :rtype: pd.DataFrame
+        """
         # Get the path of the parent directory
 
         csv_file_path = self.get_csv_filepath(**kwargs)
@@ -67,11 +98,20 @@ class RegistryTrackingBase:
             df = pd.DataFrame()
         return df
 
-    def write_df_to_csv(self, pull_requests: pd.DataFrame, **kwargs):
+    def write_df_to_csv(self, df: pd.DataFrame, **kwargs):
+        """
+        Writes DataFrame to csv along path as defined in get_csv_filepath
+        :param df: DataFrame to write to csv
+        :type df: pd.DataFrame
+        :param kwargs: kwargs to pass to get_csv_filepath function
+        :type kwargs: any
+        :return: None
+        :rtype: None
+        """
         # Get the path of the parent directory
         csv_file_path = self.get_csv_filepath(**kwargs)
         try:
-            pull_requests.to_csv(csv_file_path, index=False)
+            df.to_csv(csv_file_path, index=False)
             logger.info(f"{self.user_repo} CSV file successfully written to :{csv_file_path}")
         except PermissionError as e:
             logger.error(f"Permission error : {e}")
