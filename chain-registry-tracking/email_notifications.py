@@ -11,7 +11,7 @@ class EmailConfig():
         self.password=os.environ.get("EMAIL_PASSWORD")
         self.username = os.environ.get("EMAIL_USERNAME")
         self.smtp_server_name=os.environ.get("SMTP_SERVER")
-        self.port=587
+        self.port=int(os.environ.get("SMTP_SERVER_PORT"))
         self.sender=os.environ.get("EMAIL_SENDER")
 
 
@@ -25,15 +25,16 @@ def send_email(email_config: EmailConfig, recipients : list, msg):
         server.quit()
 
 
-def format_email(subject, body, sender, recipients)-> str:
+def format_email(subject, body, sender, recipients) -> str:
     msg=MIMEText(body)
     msg["Subject"]=subject
     msg["From"] = sender
     msg["To"] = ",".join(recipients)
     return msg.as_string()
 
-def main( subject : str, msg_body : str, recipients : list):
-    email_config=EmailConfig()
+
+def main(subject: str, msg_body: str, recipients: list):
+    email_config = EmailConfig()
     sender = email_config.sender
-    msg=format_email(subject,msg_body,sender,recipients)
-    send_email(email_config,recipients,msg)
+    msg=format_email(subject, msg_body, sender, recipients)
+    send_email(email_config, recipients, msg)
