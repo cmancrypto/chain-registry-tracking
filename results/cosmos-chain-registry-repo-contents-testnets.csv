@@ -11,6 +11,7 @@ testnets/babylontestnet
 testnets/babylontestnet1
 testnets/bitcannadevnet
 testnets/bitcannadevnet2
+testnets/blockxtestnet
 testnets/cascadiatestnet
 testnets/celestiatestnet
 testnets/celestiatestnet2
@@ -46,6 +47,7 @@ testnets/impacthubtestnet
 testnets/imversedtestnet
 testnets/injectivetestnet
 testnets/jackaltestnet
+testnets/jackaltestnet2
 testnets/junotestnet
 testnets/kichaintestnet
 testnets/kujiratestnet
@@ -92,6 +94,7 @@ testnets/selfchaindevnet
 testnets/sgetestnet
 testnets/sgetestnet4
 testnets/sixtestnet
+testnets/soarchaintestnet
 testnets/sourcetestnet
 testnets/stargazetestnet
 testnets/statesettestnet
