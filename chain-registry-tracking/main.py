@@ -1,4 +1,5 @@
 import email_notifications
+import email_address_registration
 import repo_contents
 from loguru import logger
 
@@ -51,13 +52,19 @@ class RepoContentUpdateNotification:
 
 
 if __name__ == "__main__":
+    email_list=email_address_registration.get_email_list()
+
+    if len(email_list)==0:
+        logger.info("No emails in email list - create results/email_list.json first using email_address_registration.py CLI")
+
+
     chain_registry_content_filters = repo_contents.ContentFilter(name="testnets",
                                                   path="testnets",
                                                   return_file_content_type="dir",
                                                   recursively_access=False)
     chain_reg_testnet = RepoContentUpdateNotification("cosmos",
                                                       "chain-registry",
-                                                      ["cmancrypto@outlook.com"],
+                                                      notification_receivers=email_list,
                                                       content_filter=chain_registry_content_filters)
     chain_reg_testnet.main()
 
@@ -67,7 +74,7 @@ if __name__ == "__main__":
                                                   recursively_access=False)
     chain_reg_mainnet = RepoContentUpdateNotification("cosmos",
                                                       "chain-registry",
-                                                      ["cmancrypto@outlook.com"],
+                                                      notification_receivers=email_list,
                                                       content_filter=chain_registry_content_filters)
     chain_reg_mainnet.main()
 
@@ -79,7 +86,7 @@ if __name__ == "__main__":
                                                   recursively_access=True)
     dym_reg_testnet = RepoContentUpdateNotification("dymensionxyz",
                                                       "chain-registry",
-                                                      ["cmancrypto@outlook.com"],
+                                                      email_list,
                                                       content_filter=dym_content_filters)
     dym_reg_testnet.main()
     """

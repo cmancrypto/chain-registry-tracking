@@ -4,6 +4,8 @@ import pandas as pd
 from loguru import logger
 ##this is the CLI Interface for the email registration
 
+##usage chain-registry-tracking/email_address_registration.py email_addresses
+## -r flag to remove email addresses instead of add
 
 def main():
     # Initialize parser
@@ -25,8 +27,7 @@ def main():
 
     for arg in args.emails:
         if args.remove:
-            logger.info(f"dropped {arg}")
-            logger.info("args remove")
+            logger.info(f"dropped {arg} from email list")
             df= df[df.emails != arg]
 
 
@@ -36,7 +37,7 @@ def main():
             if arg in df["emails"].values:
                 logger.info(f"{arg} already in df")
             else:
-                df.loc[len(df)]={"emails":arg}
+                df=df._append({"emails":arg}, ignore_index=True)
 
     write_df_to_json(df)
 def get_email_json_path()-> str:
@@ -57,8 +58,9 @@ def fetch_df_from_json() -> pd.DataFrame:
                 df = pd.DataFrame()
                 logger.error(f" Empty data frame in json {file_path}: {e}")
             except ValueError as e:
-                df = pd.DataFrame()
                 logger.error(f" Value error loading data frame from {file_path}: {e}, making a new blank dataframe")
+                df = pd.DataFrame()
+
 
         else:
             logger.debug(f" json file does not exist in the results directory.")
@@ -76,4 +78,14 @@ def write_df_to_json(df):
     except IOError as e:
         logger.error(f"IO error : {e}")
 
-main()
+def get_email_list():
+    df=fetch_df_from_json()
+    emails=df["emails"].to_list()
+
+    return emails
+
+
+
+
+if __name__ == "__main__":
+    main()
